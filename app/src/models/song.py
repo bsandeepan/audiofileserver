@@ -1,8 +1,8 @@
 class SongModel:
     @staticmethod
-    def check_field_presence(song_metadata):
+    def check_field_presence(metadata):
         try:
-            if (song_metadata["duration"] and song_metadata["name"]):
+            if (metadata["duration"] and metadata["name"]):
                 return True
         except KeyError:
             return False
@@ -20,12 +20,12 @@ class SongModel:
         return False
 
     @staticmethod
-    def validate(song_metadata):
-        are_fields_present = SongModel.check_field_presence(song_metadata)
+    def validate(metadata):
+        are_fields_present = SongModel.check_field_presence(metadata)
         if are_fields_present:
             if (
-                SongModel.check_name(song_metadata["name"]) and 
-                SongModel.check_duration(song_metadata["duration"])
+                SongModel.check_name(metadata["name"]) and 
+                SongModel.check_duration(metadata["duration"])
             ):
                 return True
         else:

@@ -1,8 +1,8 @@
 class PodcastModel:
     @staticmethod
-    def check_field_presence(song_metadata):
+    def check_field_presence(metadata):
         try:
-            if (song_metadata["duration"] and song_metadata["name"] and song_metadata["host"]):
+            if (metadata["duration"] and metadata["name"] and metadata["host"]):
                 return True
         except KeyError:
             return False
@@ -32,17 +32,17 @@ class PodcastModel:
         return False
 
     @staticmethod
-    def validate(song_metadata):
-        are_fields_present = PodcastModel.check_field_presence(song_metadata)
+    def validate(metadata):
+        are_fields_present = PodcastModel.check_field_presence(metadata)
         if are_fields_present:
             if (
-                PodcastModel.check_name(song_metadata["name"]) and 
-                PodcastModel.check_name(song_metadata["host"]) and
-                PodcastModel.check_duration(song_metadata["duration"])
+                PodcastModel.check_name(metadata["name"]) and 
+                PodcastModel.check_name(metadata["host"]) and
+                PodcastModel.check_duration(metadata["duration"])
             ):
                 # check participants list if present
                 try:
-                    if PodcastModel.check_participants(song_metadata["participants"]):
+                    if PodcastModel.check_participants(metadata["participants"]):
                         pass
                     else:
                         return False

@@ -1,10 +1,10 @@
 class AudiobookModel:
     @staticmethod
-    def check_field_presence(song_metadata):
+    def check_field_presence(metadata):
         try:
             if (
-                song_metadata["duration"] and song_metadata["name"] and
-                song_metadata["author"] and song_metadata["narrator"]
+                metadata["duration"] and metadata["name"] and
+                metadata["author"] and metadata["narrator"]
             ):
                 return True
         except KeyError:
@@ -23,14 +23,14 @@ class AudiobookModel:
         return False
 
     @staticmethod
-    def validate(song_metadata):
-        are_fields_present = AudiobookModel.check_field_presence(song_metadata)
+    def validate(metadata):
+        are_fields_present = AudiobookModel.check_field_presence(metadata)
         if are_fields_present:
             if (
-                AudiobookModel.check_name(song_metadata["name"]) and 
-                AudiobookModel.check_name(song_metadata["author"]) and
-                AudiobookModel.check_name(song_metadata["narrator"]) and
-                AudiobookModel.check_duration(song_metadata["duration"])
+                AudiobookModel.check_name(metadata["name"]) and 
+                AudiobookModel.check_name(metadata["author"]) and
+                AudiobookModel.check_name(metadata["narrator"]) and
+                AudiobookModel.check_duration(metadata["duration"])
             ):
                 return True
         else:
